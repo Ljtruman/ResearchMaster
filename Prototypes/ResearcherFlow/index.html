@@ -30,6 +30,36 @@
       background-color: #000;
       z-index: 1;
     }
+    .nav-buttons {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 999;
+  }
+  .nav-btn {
+    background-color: #111;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    padding: 10px 14px;
+    border-radius: 50%;
+    font-weight: bold;
+    font-family: sans-serif;
+    font-size: 14px;
+    opacity: 0.8;
+    transition: background-color 0.2s, opacity 0.2s;
+  }
+  .nav-btn:hover {
+    background-color: #333;
+    opacity: 1;
+  }
+  .nav-btn.active-btn {
+  background-color: #fff;
+  color: #111;
+  }
   </style>
 </head>
 <body>
@@ -37,6 +67,11 @@
     src="https://embed.figma.com/proto/bOMRwLwgYTALdLmXfc5dEE/ResearchMaster_Phase1?node-id=197-58416&scaling=min-zoom&content-scaling=fixed&page-id=197%3A57254&starting-point-node-id=197%3A58416&embed-host=share"
     allowfullscreen
   ></iframe>
-  <div class="figma-overlay"></div>
+  <div class="figma-overlay"></div>v
+  <div class="nav-buttons">
+  <a href="/prototype1" class="nav-btn">1</a>
+  <a href="/prototype2" class="nav-btn">2</a>
+  <a href="/prototype3" class="nav-btn">3</a>
+  </div>
 </body>
 </html>
