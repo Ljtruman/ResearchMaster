@@ -3,40 +3,105 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ResearchMaster Prototype</title>
+  <title>ResearchMaster Prototypes</title>
   <style>
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
       overflow: hidden;
-      background-color: #000;
+      background: #000;
     }
-    iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
+
+    .iframe-container {
       width: 100vw;
       height: 100vh;
-      border: none;
-      z-index: 0;
+      position: relative;
     }
-    .figma-overlay {
+
+    iframe {
       position: absolute;
-      bottom: 0;
-      right: 0;
-      width: 100vw;
-      height: 50px;
-      background-color: #000;
-      z-index: 1;
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: none;
+    }
+
+    iframe.active {
+      display: block;
+    }
+
+    .nav-buttons {
+      position: fixed;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      z-index: 9999;
+    }
+
+    .nav-btn {
+      background-color: #111;
+      color: #fff;
+      text-decoration: none;
+      border: none;
+      padding: 10px 14px;
+      border-radius: 20px;
+      font-weight: bold;
+      font-family: sans-serif;
+      font-size: 14px;
+      opacity: 0.8;
+      transition: background-color 0.2s, opacity 0.2s;
+      cursor: pointer;
+    }
+
+    .nav-btn:hover,
+    .nav-btn.active-btn {
+      background-color: #fff;
+      color: #111;
+      border: 2px solid #111;
+      opacity: 1;
     }
   </style>
 </head>
 <body>
-  <iframe
-    src="https://embed.figma.com/proto/bOMRwLwgYTALdLmXfc5dEE/ResearchMaster_Phase1?node-id=197-58416&scaling=min-zoom&content-scaling=fixed&page-id=197%3A57254&starting-point-node-id=197%3A58416&embed-host=share"
-    allowfullscreen
-  ></iframe>
-  <div class="figma-overlay"></div>
+  <div class="iframe-container">
+    <iframe
+      id="AdminFlow"
+      class="active"
+      src="https://embed.figma.com/proto/bOMRwLwgYTALdLmXfc5dEE/ResearchMaster_Phase1?node-id=631-17506&scaling=min-zoom&content-scaling=fixed&page-id=565%3A13206&starting-point-node-id=631%3A17506&embed-host=share"
+    ></iframe>
+
+    <iframe
+      id="ResearcherFlow"
+      src="https://embed.figma.com/proto/bOMRwLwgYTALdLmXfc5dEE/ResearchMaster_Phase1?node-id=197-58416&scaling=min-zoom&content-scaling=fixed&page-id=197%3A57254&starting-point-node-id=197%3A58416&embed-host=share"
+    ></iframe>
+
+    <iframe
+      id="DepartmentHeadFlow"
+      src="https://embed.figma.com/proto/bOMRwLwgYTALdLmXfc5dEE/ResearchMaster_Phase1?node-id=694-12248&scaling=min-zoom&content-scaling=fixed&page-id=442%3A4316&starting-point-node-id=694%3A12248&embed-host=share"
+    ></iframe>
+  </div>
+
+  <div class="nav-buttons">
+    <button class="nav-btn active-btn" onclick="show('AdminFlow', this)">Admin</button>
+    <button class="nav-btn" onclick="show('ResearcherFlow', this)">Researcher</button>
+    <button class="nav-btn" onclick="show('DepartmentHeadFlow', this)">Dept Head</button>
+  </div>
+
+  <script>
+    function show(id, el) {
+      document.querySelectorAll("iframe").forEach((frame) => {
+        frame.classList.remove("active");
+      });
+      document.getElementById(id).classList.add("active");
+
+      document.querySelectorAll(".nav-btn").forEach((btn) => {
+        btn.classList.remove("active-btn");
+      });
+      el.classList.add("active-btn");
+    }
+  </script>
 </body>
 </html>
