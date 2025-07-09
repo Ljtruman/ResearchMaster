@@ -10,13 +10,25 @@
       padding: 0;
       height: 100%;
       overflow: hidden;
-      background-color: #000; /* optional */
+      background-color: #000;
     }
     iframe {
-      border: none;
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100vw;
       height: 100vh;
-      display: block;
+      border: none;
+      z-index: 0;
+    }
+    .figma-overlay {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 200px;
+      height: 40px;
+      background-color: #000;
+      z-index: 1;
     }
   </style>
 </head>
@@ -25,5 +37,6 @@
     src="https://embed.figma.com/proto/bOMRwLwgYTALdLmXfc5dEE/ResearchMaster_Phase1?node-id=197-58416&scaling=min-zoom&content-scaling=fixed&page-id=197%3A57254&starting-point-node-id=197%3A58416&embed-host=share"
     allowfullscreen
   ></iframe>
+  <div class="figma-overlay"></div>
 </body>
 </html>
