@@ -6,72 +6,69 @@
   <title>ResearchMaster Prototypes</title>
   <style>
     html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      overflow: hidden;
-      background: #000;
-    }
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+  }
+  
+  .iframe-container {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+  }
+  
+  iframe {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: none;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease-in-out;
+    z-index: 0;
+  }
+  
+  iframe.active {
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 1;
+  }
+  
+  .nav-buttons {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 9999;
+  }
+  
+  .nav-btn {
+    background-color: #111;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    padding: 10px 14px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-family: sans-serif;
+    font-size: 14px;
+    opacity: 0.8;
+    transition: background-color 0.2s, opacity 0.2s;
+    cursor: pointer;
+  }
+  
+  .nav-btn:hover,
+  .nav-btn.active-btn {
+    background-color: #fff;
+    color: #111;
+    border: 2px solid #111;
+    opacity: 1;
+  }
 
-    .iframe-container {
-      width: 100vw;
-      height: 100vh;
-      position: relative;
-    }
-
-    iframe {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      border: none;
-      display: none;
-    }
-
-    iframe.active {
-      display: block;
-    }
-
-    .nav-buttons {
-      position: fixed;
-      bottom: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 10px;
-      z-index: 9999;
-    }
-
-    .nav-btn {
-      background-color: #111;
-      color: #fff;
-      text-decoration: none;
-      border: none;
-      padding: 10px 14px;
-      border-radius: 20px;
-      font-weight: bold;
-      font-family: sans-serif;
-      font-size: 14px;
-      opacity: 0.8;
-      transition: background-color 0.2s, opacity 0.2s;
-      cursor: pointer;
-    }
-
-    .nav-btn:hover,
-    .nav-btn.active-btn {
-      background-color: #fff;
-      color: #111;
-      border: 2px solid #111;
-      opacity: 1;
-    }
-    .figma-overlay {
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      width: 100vw;
-      height: 50px;
-      background-color: #000;
-      z-index: 1;
-    }
   </style>
 </head>
 <body>
@@ -101,17 +98,22 @@
   <div class="figma-overlay"></div>
 
   <script>
-    function show(id, el) {
-      document.querySelectorAll("iframe").forEach((frame) => {
-        frame.classList.remove("active");
-      });
-      document.getElementById(id).classList.add("active");
+  function show(id, el) {
+    const iframes = document.querySelectorAll("iframe");
+    const buttons = document.querySelectorAll(".nav-btn");
 
-      document.querySelectorAll(".nav-btn").forEach((btn) => {
-        btn.classList.remove("active-btn");
-      });
-      el.classList.add("active-btn");
-    }
-  </script>
+    // Remove active classes from all
+    iframes.forEach(frame => {
+      frame.classList.remove("active");
+    });
+    buttons.forEach(btn => {
+      btn.classList.remove("active-btn");
+    });
+
+    // Add active class to new target
+    document.getElementById(id).classList.add("active");
+    el.classList.add("active-btn");
+  }
+</script>
 </body>
 </html>
